@@ -3,7 +3,7 @@ let b = '' // second number.
 let sign = '' //Знак операции.
 let finish = false
 
-const digt = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '.']
+const digit = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '.']
 const action = ['-', '+', 'X', '/']
 
 // Экран
@@ -20,7 +20,21 @@ function clearAll() {
 document.querySelector('.ac-btn').onclick = clearAll
 
 document.querySelector('.buttons').onclick = (event) => {
-    if(!event.target.classList.contains('.button')) return
+    //нажата не кнопка 
+    if(!event.target.classList.contains('button')) return
+    //нажата кнопка clearAll
+    if(event.target.classList.contains('ac-btn')) return
+
+    out.textContent = ""
+    //получаю нажатую кнопку 
+    const key = event.target.textContent
+
+    // если нажата кнопка от 0 до 9 или .
+    if (digit.includes(key)) {
+        a+= key
+        console.log(a, b , sign);
+    }
+
 }
 
 
