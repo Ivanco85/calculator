@@ -65,7 +65,7 @@ body {
 }
 
 .darck-btn {
-background-color: rgb(75, 75, 75);
+    background-color: rgb(75, 75, 75);
 }
 
 .grey-btn:hover {
@@ -81,4 +81,14 @@ background-color: rgb(75, 75, 75);
 .darck-btn:hover {
     background-color: rgb(102, 102, 102);
     transition: background-color 0.3s;
+}
+
+.calc-display {
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+}
+
+.calc-display p{
+    font-size: 45px;
 }
