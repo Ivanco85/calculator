@@ -21,9 +21,9 @@ document.querySelector('.ac-btn').onclick = clearAll
 
 document.querySelector('.buttons').onclick = (event) => {
     //нажата не кнопка 
-    if(!event.target.classList.contains('button')) return
+    if (!event.target.classList.contains('button')) return
     //нажата кнопка clearAll
-    if(event.target.classList.contains('ac-btn')) return
+    if (event.target.classList.contains('ac-btn')) return
 
     out.textContent = ""
     //получаю нажатую кнопку 
@@ -31,8 +31,48 @@ document.querySelector('.buttons').onclick = (event) => {
 
     // если нажата кнопка от 0 до 9 или .
     if (digit.includes(key)) {
-        a+= key
-        console.log(a, b , sign);
+        if (b === '' && sign === '') {
+            a += key
+            out.textContent = a
+        }
+        else if (a !== '' && b !== '' && finish) {
+
+        }
+        else {
+            b += key
+            out.textContent = a
+        }
+        console.log(a, b, sign);
+        return
+    }
+
+    // если нажата кнопка + - / *
+    if (action.includes(key)) {
+        sign = key
+        out.textContent = sign
+        console.log(a, b, sign);
+        return
+    }
+
+    // нажата =
+    if (key === '=') {
+        switch (sign) {
+            case '+':
+                a = (+a) + (+b)
+                break
+            case '-':
+                a = a - b
+                break
+            case 'X':
+                a = a * b
+                break
+            case '/':
+                a = a / b
+                break
+        }
+        finish = true
+        out.textContent = a
+        console.log(a, b, sign)
     }
 
 }
