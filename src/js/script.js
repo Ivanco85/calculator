@@ -4,7 +4,7 @@ let sign = '' //Знак операции.
 let finish = false
 
 const digit = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '.']
-const action = ['-', '+', 'X', '/']
+const action = ['-', '+', 'X', '/', '%']
 
 // Экран
 const out = document.querySelector('.calc-display p')
@@ -35,12 +35,15 @@ document.querySelector('.buttons').onclick = (event) => {
             a += key
             out.textContent = a
         }
+        // для операции с получнным результатом после первой операции 
         else if (a !== '' && b !== '' && finish) {
-
+            b = key
+            finish = false
+            out.textContent = b
         }
         else {
             b += key
-            out.textContent = a
+            out.textContent = b
         }
         console.log(a, b, sign);
         return
@@ -54,8 +57,9 @@ document.querySelector('.buttons').onclick = (event) => {
         return
     }
 
-    // нажата =
+    // нажата =    
     if (key === '=') {
+        if (b === '') b = a
         switch (sign) {
             case '+':
                 a = (+a) + (+b)
@@ -67,8 +71,18 @@ document.querySelector('.buttons').onclick = (event) => {
                 a = a * b
                 break
             case '/':
+                if (b === '0') {
+                    out.textContent = 'ERROR'
+                    a = ''
+                    b = ''
+                    sign = ''
+                    return
+                }
                 a = a / b
                 break
+            // case '%':
+            //     a = 100 * a
+            //     break
         }
         finish = true
         out.textContent = a
